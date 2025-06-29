@@ -639,17 +639,19 @@ FilesDock::FilesDock(QWidget *parent)
     ui->verticalLayout->addWidget(toolbar);
     ui->verticalLayout->addSpacing(2);
 
-    auto toolbar2 = new QToolBar(tr("Files Filters"));
-    toolbar2->addAction(Actions["filesFoldersView"]);
-    ui->filtersLayout->addWidget(toolbar2);
+    toolbar = new DockToolBar(tr("Files Filters"));
+    toolbar->setAreaHint(Qt::BottomToolBarArea);
+    toolbar->addAction(Actions["filesFoldersView"]);
+    ui->filtersLayout->addWidget(toolbar);
 
-    toolbar2 = new QToolBar(ui->label->text());
-    toolbar2->addAction(Actions["filesRefreshFolders"]);
-    toolbar2->addAction(Actions["filesGoUp"]);
+    toolbar = new DockToolBar(ui->label->text());
+    toolbar->setAreaHint(Qt::BottomToolBarArea);
+    toolbar->addAction(Actions["filesRefreshFolders"]);
+    toolbar->addAction(Actions["filesGoUp"]);
     delete ui->label;
-    ui->locationsLayout->insertWidget(1, toolbar2);
+    ui->locationsLayout->insertWidget(1, toolbar);
 
-    toolbar2 = new QToolBar(tr("Files Filters"));
+    auto toolbar2 = new QToolBar(tr("Files Filters"));
     QString styleSheet = QStringLiteral("QToolButton {"
                                         "    background-color: palette(background);"
                                         "    border-style: solid;"
